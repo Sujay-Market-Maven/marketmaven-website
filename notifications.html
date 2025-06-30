@@ -150,7 +150,7 @@
   // Show spinner at first
   spinner.classList.remove('hidden');
 
-  fetch('http://127.0.0.1:5000/api/notifications')
+  fetch("https://marketmaven-backend.onrender.com/api/notifications")
     .then(response => response.json())
     .then(data => {
       spinner.classList.add('hidden');
