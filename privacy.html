@@ -31,37 +31,44 @@
 </head>
 <body class="bg-[#FFF9F2] text-[#3B2A1A]">
 
-<!-- Navbar -->
+  <!-- Navbar -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-transparent">
-  <nav class="bg-[#3B2F2Fb3] backdrop-blur-md px-6 py-2 w-full flex items-center justify-between shadow-md">
+  <nav class="bg-[#3B2F2Fb3] backdrop-blur-md px-6 py-2 w-full shadow-md">
+    <div class="flex flex-wrap items-center justify-between">
 
-    <!-- Logo + Brand -->
-    <div class="flex items-center gap-2">
-      <img src="images/MMI logo v1.png" alt="Market Maven Logo" class="h-10 w-10 rounded-full shadow-sm" />
-      <div class="text-white font-semibold text-base px-4 py-1 bg-[#2a2a2a] rounded-full shadow-sm">
-        Market Maven International
+      <!-- Logo + Brand -->
+      <div class="flex items-center gap-4">
+        <img src="images/MMI logo v1.png" alt="Market Maven Logo" class="h-16 w-16 rounded-full object-cover shadow-md" />
+        <div class="text-white font-extrabold text-xl tracking-wide">
+          Market Maven <span class="text-yellow-400">International</span>
+        </div>
       </div>
-    </div>
 
-    <!-- Nav Links -->
-    <div class="flex items-center gap-4">
-      <a href="index.html" class="text-white px-4 py-1 rounded-full bg-[#2a2a2a] hover:bg-[#4a3b3b] transition font-medium shadow-sm">
-        Home
-      </a>
-      <a href="about.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
-        About
-      </a>
-      <a href="services.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
-        Services
-      </a>
-      <a href="notifications.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
-        Notifications
-      </a>
-      <a href="#contact" class="relative px-1 py-1 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 hover:scale-105 transition">
-        <span class="block bg-[#1f1f1f] text-white px-3 py-1 rounded-full text-sm font-medium">
-          Say Hello
-        </span>
-      </a>
+      <!-- Mobile Menu Toggle -->
+      <button id="menuToggle" class="sm:hidden text-white text-2xl focus:outline-none">
+        ☰
+      </button>
+
+      <!-- Navigation Links -->
+      <div id="mobileMenu" class="hidden sm:flex sm:flex-row sm:items-center sm:gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+        <a href="index.html" class="text-white px-4 py-1 rounded-full bg-[#2a2a2a] hover:bg-[#4a3b3b] transition font-medium shadow-sm">
+          Home
+        </a>
+        <a href="about.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
+          About
+        </a>
+        <a href="services.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
+          Services
+        </a>
+        <a href="notifications.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
+          Notifications
+        </a>
+        <a href="#contact" class="relative px-1 py-1 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 hover:scale-105 transition">
+          <span class="block bg-[#1f1f1f] text-white px-3 py-1 rounded-full text-sm font-medium">
+            Say Hello
+          </span>
+        </a>
+      </div>
     </div>
   </nav>
 </header>
@@ -189,6 +196,17 @@
     }
   });
 </script>
+
+<script>
+  const toggleButton = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  toggleButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+
 
 </body>
 </html>
