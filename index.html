@@ -1,387 +1,170 @@
 <!DOCTYPE html>
-<html lang="en" x-data>
+<html lang="en" x-data class="overflow-x-hidden">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   <title>Market Maven International</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet" />
-
-  <script src="https://cdn.tailwindcss.com?plugins=line-clamp"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.3/cdn.min.js" defer></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f5efe7; /* crème */
-      color: #3e2c23; /* deep brown */
-    }
-    .bg-dark-brown {
-      background-color: #3e2c23;
-    }
-    .text-dark-brown {
-      color: #3e2c23;
-    }
-    .text-cream {
-      color: #f5efe7;
-    }
-    .bg-cream {
       background-color: #f5efe7;
+      color: #3e2c23;
+      overflow-x: hidden;
     }
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 9999px;
-      background-color: #d1c5b3;
-      transition: background-color 0.3s;
+    html {
+      scroll-behavior: smooth;
     }
-    .active-dot {
-      background-color: #a17f5e;
+    .video-slide-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
     }
-    .animate-fade-in {
-      animation: fadeIn 1.5s ease-in-out both;
+    .video-text, .video-card {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
     }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    @media (min-width: 1024px) {
+      .video-slide-container {
+        flex-direction: row;
+      }
+      .video-text {
+        text-align: left;
+      }
     }
-    
-    /* About us */
-    
-/* Base style */
-.typewriter {
-  display: inline-block;         /* Makes the width accurate */
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 4px solid #eab308; /* yellow-600 */
-}
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 4px solid #eab308;
+    }
+    .typing-active {
+      animation: typing 2s steps(9, end) forwards, blink-caret 0.7s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0ch; }
+      to { width: 7ch; }
+    }
+    @keyframes blink-caret {
+      0%, 100% { border-color: #eab308; }
+      50% { border-color: transparent; }
+    }
 
-/* Animate width to match the text */
-.typing-active {
-  animation: typing 2s steps(9, end) forwards, blink-caret 0.7s step-end infinite;
-}
-
-/* Keyframes */
-@keyframes typing {
-  from { width: 0ch; }
-  to { width: 7ch; } /* Adjust as needed */
-}
-
-@keyframes blink-caret {
-  0%, 100% { border-color: #eab308; }
-  50% { border-color: transparent; }
-}
-
-
- 
-/* Tailwind doesn't hide scrollbar by default */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.vision-section {
-  background: #fffaf3;
-  padding: 80px 40px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.vision-section h2 {
-  font-size: 3rem;
-  margin-bottom: 50px;
-  color: #3a1f0f;
-}
-
-.vision-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 30px;
-  padding-bottom: 20px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-
-.vision-slider::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-
-.vision-card {
-  scroll-snap-align: start;
-  background: white;
-  border-radius: 16px;
-  min-width: 320px;
-  max-width: 400px;
-  flex: 0 0 auto;
-  padding: 30px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
-}
-
-.vision-card:hover {
-  transform: scale(1.03);
-}
-
-.vision-card h3 {
-  font-size: 1.4rem;
-  color: #3a1f0f;
-  margin-bottom: 10px;
-}
-
-.vision-card p {
-  font-size: 1rem;
-  color: #4d382e;
-}
-
-.vision-nav {
-  margin-top: 20px;
-}
-
-.vision-nav button {
-  background-color: #f1c40f;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.vision-nav button:hover {
-  background-color: #d4ac0d;
-}
-
- .video-slide-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
-.video-card {
-  flex: 1 1 500px;
-  max-width: 600px;
-}
-
-.video-card video {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(90, 59, 31, 0.15); /* rich brown shadow */
-}
-
-.video-text {
-  flex: 1 1 300px;
-  max-width: 400px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.video-text p {
-  font-size: 16px;
-  color: #333;
-  min-height: 60px;
-}
-
-.cursor {
-  display: inline-block;
-  color: #5a3b1f;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-
-.cursor, .cursor2 {
-  display: inline-block;
-  color: #5a3b1f;
-  font-weight: bold;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* Ensure swiper has relative position and space for pagination */
-.swiper {
-  position: relative;
-  padding-bottom: 80px; /* reserve space for the dots */
-}
-
-
-/* Fix swiper arrow color */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #5a3b1f !important; /* consistent rich brown */
-  width: 40px;
-  height: 40px;
-}
-
-/* Adjust pagination dots further down */
-.video-carousel-wrapper .swiper-pagination {
-  position: absolute;
-  bottom: -25px; /* move dots further down */
-  left: 0;
-  width: 100%;
-  text-align: center;
-  z-index: 10;
-}
-
-/* Optional: make dots larger and smoother */
-.swiper-pagination-bullet {
-  background-color: #5a3b1f !important;
-  width: 10px;
-  height: 10px;
-  opacity: 0.4;
-  margin: 0 6px !important;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-.video-slide-container {
-  animation: fadeInUp 1s ease both;
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
+    /* Ensure parent is relative */
+  .swiper.videoSwiper {
+    position: relative;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #3e2c23 !important;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    z-index: 10;
   }
-}
+
+  .swiper-pagination-bullet {
+    background-color: #3e2c23 !important;
+    opacity: 1 !important;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #a16228 !important; /* darker brown when active */
+  }
+
+
+  .swiper-button-prev {
+    left: 0.1rem !important;  /* Tailwind: left-2 */
+  }
+
+  .swiper-button-next {
+    right: 0.1rem !important;  /* Tailwind: right-2 */
+  }
+
+  @media (min-width: 768px) {
+    .swiper-button-prev {
+      left: 0.1rem;   /* Tailwind: left-4 */
+    }
+
+    .swiper-button-next {
+      right: 0.1rem;  /* Tailwind: right-4 */
+    }
+  }
+
+  /* Pagination Dots */
+  .swiper-pagination {
+    bottom: 0.1rem !important;  /* Tailwind: bottom-2 */
+    z-index: 5;
+  }
 
   </style>
 
 
 
-<script>
-  function carousel() {
-    return {
-      currentIndex: 0,
-      cardWidth: 320,
-      gap: 24, // Tailwind's gap-x-6 is 1.5rem = 24px
-      services: [
-        {
-          image: 'https://picsum.photos/id/1011/400/300',
-          title: 'Global Sourcing & Distribution',
-          desc: 'Connecting you to trusted international suppliers and buyers.'
-        },
-        {
-          image: 'https://picsum.photos/id/1013/400/300',
-          title: 'Trade Documentation Support',
-          desc: 'Help with invoices, certificates, customs paperwork.'
-        },
-        {
-          image: 'https://picsum.photos/id/1015/400/300',
-          title: 'Customer Support & Consultation',
-          desc: 'Get expert advice for import/export, freight, and trade.'
-        },
-        {
-          image: 'https://picsum.photos/id/1012/400/300',
-          title: 'End-to-End Logistics Management',
-          desc: 'Seamless freight and shipment coordination worldwide.'
-        },
-      ],
-      start() {
-        setInterval(() => {
-          this.next();
-        }, 5000);
-      },
-      next() {
-        this.currentIndex = (this.currentIndex + 1) % (this.services.length - 2);
-      },
-      goTo(index) {
-        this.currentIndex = index;
-      }
-    };
-  }
-</script>
-
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
-
-
 </head>
+<body class="overflow-x-hidden text-dark-brown bg-cream">
 
-<body class="text-dark-brown bg-cream">
+<!-- Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <nav class="bg-[#3B2F2Fb3] backdrop-blur-md px-6 py-2 w-full shadow-md">
+      <div class="flex items-center justify-between w-full">
 
-  <!-- Navbar -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-transparent">
-  <nav class="bg-[#3B2F2Fb3] backdrop-blur-md px-6 py-2 w-full shadow-md">
-    <div class="flex flex-wrap items-center justify-between">
+        <!-- Logo + Brand (clickable link to homepage) -->
+        <a href="index.html"
+          class="flex items-center gap-2 min-w-0 select-none focus:outline-none no-underline bg-transparent hover:bg-transparent active:bg-transparent visited:text-white"
+          style="-webkit-tap-highlight-color: transparent;">
 
-      <!-- Logo + Brand -->
-      <div class="flex items-center gap-4">
-        <img src="images/MMI logo v1.png" alt="Market Maven Logo" class="h-16 w-16 rounded-full object-cover shadow-md" />
-        <div class="text-white font-extrabold text-xl tracking-wide">
-          Market Maven <span class="text-yellow-400">International</span>
+          <img src="images/MMI logo v1.png" alt="Market Maven Logo"
+              class="h-16 w-16 rounded-full object-cover shadow-md select-none" />
+
+          <div class="text-white font-extrabold text-xl tracking-wide select-none">
+            Market Maven <span class="text-yellow-400">International</span>
+          </div>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="menuToggle" class="sm:hidden text-white text-2xl focus:outline-none">
+          ☰
+        </button>
+
+        <!-- Navigation Links (Desktop) -->
+        <div class="hidden sm:flex flex-row items-center gap-4">
+          <a href="index.html" class="text-white px-4 py-1 rounded-full bg-[#2a2a2a] hover:bg-[#4a3b3b] transition font-medium">Home</a>
+          <a href="about.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">About</a>
+          <a href="services.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">Services</a>
+          <a href="notifications.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">Notifications</a>
+          <a href="#contact" class="relative px-1 py-1 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 hover:scale-105 transition">
+            <span class="block bg-[#1f1f1f] text-white px-3 py-1 rounded-full text-sm font-medium">Say Hello</span>
+          </a>
         </div>
       </div>
 
-      <!-- Mobile Menu Toggle -->
-      <button id="menuToggle" class="sm:hidden text-white text-2xl focus:outline-none">
-        ☰
-      </button>
-
-      <!-- Navigation Links -->
-      <div id="mobileMenu" class="hidden sm:flex sm:flex-row sm:items-center sm:gap-4 w-full sm:w-auto mt-4 sm:mt-0">
-        <a href="#" class="text-white px-4 py-1 rounded-full bg-[#2a2a2a] hover:bg-[#4a3b3b] transition font-medium shadow-sm">
-          Home
-        </a>
-        <a href="about.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
-          About
-        </a>
-        <a href="services.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
-          Services
-        </a>
-        <a href="notifications.html" class="text-white px-4 py-1 rounded-full hover:bg-[#2a2a2a] transition font-medium">
-          Notifications
-        </a>
-        <a href="#contact" class="relative px-1 py-1 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 hover:scale-105 transition">
-          <span class="block bg-[#1f1f1f] text-white px-3 py-1 rounded-full text-sm font-medium">
-            Say Hello
-          </span>
+      <!-- Mobile Dropdown Menu (Vertical) -->
+      <div id="mobileMenu" class="hidden flex-col sm:hidden mt-3 gap-3 bg-[#3B2F2F] px-6 py-4 rounded-md">
+        <a href="index.html" class="text-white block px-4 py-2 rounded-md hover:bg-[#4a3b3b] transition">Home</a>
+        <a href="about.html" class="text-white block px-4 py-2 rounded-md hover:bg-[#4a3b3b] transition">About</a>
+        <a href="services.html" class="text-white block px-4 py-2 rounded-md hover:bg-[#4a3b3b] transition">Services</a>
+        <a href="notifications.html" class="text-white block px-4 py-2 rounded-md hover:bg-[#4a3b3b] transition">Notifications</a>
+        <a href="#contact" class="block rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 hover:scale-105 transition">
+          <span class="block bg-[#1f1f1f] text-white px-4 py-2 rounded-full text-sm font-medium text-center">Say Hello</span>
         </a>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-
-
-
-  <div class="h-10"></div>
-
-  <!-- Hero Carousel -->
+  <div class="pt-[80px]">
+     <!-- Hero Carousel -->
 <section 
-  class="relative w-full h-[600px] overflow-hidden" 
+  class="relative w-full h-[600px] overflow-hidden px-6 md:px-0" 
   x-data="{
     current: 0,
     slides: [
@@ -429,7 +212,7 @@
 
       <!-- Gradient overlay with dynamic alignment -->
       <div 
-        class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center px-10 md:px-20"
+        class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center px-6 md:px-20"
         :class="{
           'justify-start': slide.align === 'left',
           'justify-center': slide.align === 'center',
@@ -465,10 +248,9 @@
 
 
       
-
-
-<section class="relative z-10 bg-[#5a3b1f] py-20 px-6 md:px-12">
-  <div class="relative z-10 max-w-screen-2xl mx-auto">
+<!-- Our Services -->
+<section class="relative z-10 bg-[#5a3b1f] py-20">
+  <div class="relative z-10 max-w-screen-xl mx-auto px-6 md:px-24">
     
     <!-- Heading -->
     <div class="text-center mb-16" data-aos="fade-up">
@@ -530,7 +312,7 @@
 
     <!-- CTA Button (moved closer) -->
     <div class="mt-10 text-center" data-aos="fade-up" data-aos-delay="300">
-      <a href="/contact.html" class="inline-block bg-yellow-400 text-[#5a3b1f] text-lg font-semibold px-8 py-3 rounded-full hover:bg-yellow-300 transition duration-300">
+      <a href="#contact" class="inline-block bg-yellow-400 text-[#5a3b1f] text-lg font-semibold px-8 py-3 rounded-full hover:bg-yellow-300 transition duration-300">
         Get in Touch With Us
       </a>
     </div>
@@ -541,42 +323,44 @@
 
 
 
-<section style="background-color: #f3e9df; padding: 60px 20px;">
-  <div style="max-width: 1200px; margin: auto;">
+<section class="bg-[#f3e9df] py-16">
+  <div class="max-w-screen-xl mx-auto px-6 md:px-16">
+
     <!-- Heading -->
-    <h2 style="font-family: 'Poppins', sans-serif; color: #5a3b1f; font-weight: 600; font-size: 32px; margin-bottom: 10px; text-align: center;"
+    <h2 class="text-[#5a3b1f] font-semibold text-3xl md:text-4xl text-center mb-2"
         data-aos="fade-up" data-aos-duration="800">
       Our Visual Story
     </h2>
 
-    <p style="text-align: center; font-size: 14px; color: #5a3b1f; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;"
+    <p class="text-sm text-[#5a3b1f] font-medium uppercase tracking-wider text-center mb-2"
        data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
       Experience Our Craftsmanship Visually
     </p>
 
-    <div style="width: 80px; height: 3px; background-color: #5a3b1f; margin: 0 auto 30px auto; border-radius: 4px;"
+    <div class="w-20 h-[3px] bg-[#5a3b1f] mx-auto mb-8 rounded"
          data-aos="zoom-in" data-aos-delay="200" data-aos-duration="800">
     </div>
 
     <!-- Swiper -->
-    <div class="swiper videoSwiper">
+    <div class="swiper videoSwiper relative py-12">
       <div class="swiper-wrapper">
 
         <!-- Slide 1 -->
         <div class="swiper-slide">
-          <div class="video-slide-container">
-            <!-- Text on the left -->
-            <div class="video-text" data-aos="fade-right" data-aos-duration="1000">
-              <h3 style="color: #5a3b1f;">Explore Our Wide Range of Products</h3>
+          <div class="flex flex-col lg:flex-row items-center justify-center gap-6 px-4">
+            
+            <!-- Text -->
+            <div class="w-full max-w-lg text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+              <h3 class="text-[#5a3b1f] text-xl font-semibold mb-2">Explore Our Wide Range of Products</h3>
               <p>
-                <span class="typed-text" data-text="Showcasing our handcrafted essential oils, soaps, and candles."></span>
+                <span class="typed-text" data-text="Showcasing our wide range of handcrafted essential oils, soaps, and candles."></span>
                 <span class="cursor">|</span>
               </p>
             </div>
 
-            <!-- Video on the right -->
-            <div class="video-card" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
-              <video autoplay muted playsinline loop controls>
+            <!-- Video -->
+            <div class="w-full max-w-lg" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+              <video autoplay muted playsinline loop controls class="w-full rounded-xl shadow-md">
                 <source src="videos/SvaNirmaan_Product.mp4" type="video/mp4" />
               </video>
             </div>
@@ -585,19 +369,20 @@
 
         <!-- Slide 2 -->
         <div class="swiper-slide">
-          <div class="video-slide-container">
-            <!-- Text on the left -->
-            <div class="video-text" data-aos="fade-right" data-aos-duration="1000">
-              <h3 style="color: #5a3b1f;">Behind the Scenes</h3>
+          <div class="flex flex-col lg:flex-row items-center justify-center gap-6 px-4">
+
+            <!-- Text -->
+            <div class="w-full max-w-lg text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+              <h3 class="text-[#5a3b1f] text-xl font-semibold mb-2">Behind the Scenes</h3>
               <p>
                 <span class="typed-text" data-text="Explore the story behind our carefully designed handicrafts and artisanship."></span>
                 <span class="cursor">|</span>
               </p>
             </div>
 
-            <!-- Video on the right -->
-            <div class="video-card" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
-              <video autoplay muted playsinline loop controls>
+            <!-- Video -->
+            <div class="w-full max-w-lg" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+              <video autoplay muted playsinline loop controls class="w-full rounded-xl shadow-md">
                 <source src="videos/handicraft.mp4" type="video/mp4" />
               </video>
             </div>
@@ -613,6 +398,7 @@
     </div>
   </div>
 </section>
+
 
 
 
@@ -1146,18 +932,16 @@
   });
 </script>
 
-<script>
-  const toggleButton = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  toggleButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-</script>
-
-
-
-
+  </div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+  <script>
+    const toggleButton = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    toggleButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 
 </body>
 </html>
