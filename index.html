@@ -126,8 +126,8 @@
           <img src="images/MMI logo v1.png" alt="Market Maven Logo"
               class="h-16 w-16 rounded-full object-cover shadow-md select-none" />
 
-          <div class="text-white font-extrabold text-xl tracking-wide select-none">
-            Market Maven <span class="text-yellow-400">International</span>
+          <div class="text-yellow-400 font-extrabold text-xl tracking-wide select-none">
+            Market Maven International
           </div>
         </a>
 
@@ -604,54 +604,65 @@
     <!-- Right Column: Testimonials + Video -->
     <div class="flex flex-col gap-8">
       
-      <!-- Testimonials -->
-      <div>
-        <h2 class="text-3xl font-bold text-[#814c00] mb-6">What Our Clients Say</h2>
-        <div 
-          x-data="{
-            current: 0, 
-            reviews: [
-              { text: 'Their team was exceptionally responsive and helped streamline our export process. Highly recommend them to other SMEs!', name: 'Ayesha K.', image: 'https://randomuser.me/api/portraits/women/1.jpg' },
-              { text: 'We were impressed with the clarity of guidance and professionalism. Saved us a lot of paperwork hassle.', name: 'Rohit M.', image: 'https://randomuser.me/api/portraits/men/2.jpg' },
-              { text: 'As a first-time exporter, I felt confident thanks to their support. Great job!', name: 'Neha S.', image: 'https://randomuser.me/api/portraits/women/3.jpg' }
-            ] 
-          }" 
-          x-init="setInterval(() => current = (current + 1) % reviews.length, 5000)" 
-          class="relative"
-        >
-          <!-- Testimonials -->
-          <div class="relative h-64">
-            <template x-for="(review, index) in reviews" :key="index">
-              <div x-show="current === index" x-transition 
-                class="absolute inset-0 bg-white shadow rounded-xl p-6 flex flex-col items-center justify-center text-center">
-                <img :src="review.image" alt="Client photo" class="w-16 h-16 rounded-full mb-4">
-                <p class="text-gray-700 italic mb-3" x-text="review.text"></p>
-                <div class="text-sm font-medium text-gray-800" x-text="review.name"></div>
-              </div>
-            </template>
-          </div>
+      <!-- Why Choose Market Maven International -->
+<div>
+  <h2 class="text-3xl font-bold text-[#814c00] mb-6 text-center">Why Choose Market Maven International</h2>
+  <div 
+    x-data="{
+      current: 0,
+      cards: [
+        {
+          title: 'Pure & Ethically Sourced',
+          description: 'We ensure all our essential oils, soaps, and candles are sourced from trusted producers following sustainable and ethical practices.'
+        },
+        {
+          title: 'Global Trade Expertise',
+          description: 'With deep experience in international logistics and documentation, we simplify the import-export process for wellness products across borders.'
+        },
+        {
+          title: 'Quality & Customization',
+          description: 'We offer tailored solutions for bulk buyers with a focus on premium quality, consistent packaging, and custom branding support.'
+        }
+      ]
+    }"
+    x-init="setInterval(() => current = (current + 1) % cards.length, 5000)"
+    class="relative"
+  >
 
-          <!-- Line Indicator -->
-          <div class="flex justify-center gap-2 mt-4">
-            <template x-for="(review, index) in reviews" :key="index">
-              <div 
-                class="h-1 rounded-full transition-all duration-300"
-                :class="{
-                  'bg-[#814c00] w-8': current === index,
-                  'bg-gray-300 w-4': current !== index
-                }">
-              </div>
-            </template>
-          </div>
+    <!-- Card Transition Area -->
+    <div class="relative h-64">
+      <template x-for="(card, index) in cards" :key="index">
+        <div x-show="current === index" x-transition
+          class="absolute inset-0 bg-white shadow rounded-xl p-6 flex flex-col items-center justify-center text-center">
+          <h3 class="text-xl font-semibold text-[#814c00] mb-2" x-text="card.title"></h3>
+          <p class="text-gray-700 text-sm" x-text="card.description"></p>
         </div>
-      </div>
+      </template>
+    </div>
+
+    <!-- Line Indicator -->
+    <div class="flex justify-center gap-2 mt-4">
+      <template x-for="(card, index) in cards" :key="index">
+        <div 
+          class="h-1 rounded-full transition-all duration-300"
+          :class="{
+            'bg-[#814c00] w-8': current === index,
+            'bg-gray-300 w-4': current !== index
+          }">
+        </div>
+      </template>
+    </div>
+
+  </div>
+</div>
+
 
       <!-- Video -->
       <div>
         <h2 class="text-3xl font-bold text-[#814c00] mb-6">Get Started With Us</h2>
         <div class="rounded-xl overflow-hidden shadow-lg">
           <video class="w-full h-64" controls autoplay muted loop>
-            <source src="videos/SvaNirmaan.mp4" type="video/mp4" />
+            <source src="videos/MainCompany.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
